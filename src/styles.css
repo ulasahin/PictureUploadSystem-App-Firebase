@@ -1,5 +1,6 @@
 .background-settings{
     background-color: #bdb5ae;
+    background-image: url('/picture-upload-system-app/browser/assets/weather.png');
 }
 @media (max-width: 480px) {
     .background-settings{
