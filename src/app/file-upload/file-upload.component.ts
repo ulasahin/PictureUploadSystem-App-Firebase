@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-file-upload',
@@ -8,8 +9,10 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 })
 export class FileUploadComponent {
   selectedFiles: File[] = [];
+  uploadProgress: number = 0;
+  downloadURL: string | undefined;
 
-  constructor(private http: HttpClient) {}
+  constructor(private storage: AngularFireStorage) {}
 
   onFileSelected(event: any) {
     this.selectedFiles = Array.from(event.target.files);
@@ -17,26 +20,25 @@ export class FileUploadComponent {
 
   onUpload() {
     if (this.selectedFiles.length > 0) {
-      const formData = new FormData();
       this.selectedFiles.forEach(file => {
-        formData.append('files', file, file.name);
-      });
+        const filePath = `uploads/${Date.now()}_${file.name}`;
+        const fileRef = this.storage.ref(filePath);
+        const task = this.storage.upload(filePath, file);
 
-      const url = '/api/files/upload';
+        task.percentageChanges().subscribe(progress => {
+          this.uploadProgress = progress || 0;
+          console.log(`File is ${this.uploadProgress}% uploaded.`);
+        });
 
-      this.http.post(url, formData, {
-        reportProgress: true,
-        observe: 'events'
-      }).subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          const progress = Math.round(100 * (event.loaded / (event.total || 1)));
-          console.log(`File is ${progress}% uploaded.`);
-        } else if (event.type === HttpEventType.Response) {
-          console.log('Files are completely uploaded!', event.body);
-          alert("Yükleme Başarılı. ♥ Teşekkür Ederiz ♥")
-        }
-      }, error => {
-        console.error('Upload failed', error);
+        task.snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe(url => {
+              this.downloadURL = url;
+              console.log('File available at', this.downloadURL);
+              alert("Yükleme Başarılı. ♥ Teşekkür Ederiz ♥")
+            });
+          })
+        ).subscribe();
       });
     }
   }
