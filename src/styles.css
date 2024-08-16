@@ -1,7 +1,10 @@
 .background-settings{
     background-color: #bdb5ae;
     background-image: url('/assets/weather.png');
+<<<<<<< HEAD
     background-size: contain;
+=======
+>>>>>>> 089f85766b3759c93faedf1c8c4dbeb1408a3d7f
     background-position: center top 10px;
     background-repeat: no-repeat;
 }
