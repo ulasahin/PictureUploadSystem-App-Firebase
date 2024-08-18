@@ -8,7 +8,7 @@ The concept of the site is designed for weddings and is suitable for mobile devi
 - Angular, Node.js, Javascript, Typescript, HTML, CSS, Media Queries(For mobile device compatibility.), Google Cloud Firebase Storage.
 
 
-"" A version of this site was developed using Java Spring Boot, without using Firebase. ([see](https://github.com/ulasahin/PictureUploadWebSite))
+**A version of this site was developed using Java Spring Boot, without using Firebase. ([see](https://github.com/ulasahin/PictureUploadWebSite))**
 
 
 
