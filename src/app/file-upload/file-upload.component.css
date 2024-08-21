@@ -37,6 +37,22 @@
     left: 23em;
     top: 7em;
   }
+  .progress-bar {
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    height: 20px;
+    position: relative;
+  }
+  
+  .progress {
+    background-color: #4caf50;
+    height: 100%;
+    width: 0;
+    transition: width 0.4s;
+  }
   @media (max-width: 480px) {
     .custom-button {
         position: relative;
@@ -53,6 +69,34 @@
         top: 20em; 
         font-size: 1em;
     }
+    .progress-bar {
+      width: 100%;
+      background-color: #f3f3f3;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      height: 20px;
+    }
+    
+    .progress {
+      background-color: #4caf50;
+      height: 100%;
+      width: 0;
+      transition: width 0.4s;
+    }
+    .progress-div{
+      position: relative;
+      top: 9em;
+    }
+    .custom-informative-text{
+      position: relative;
+      left: 0em;
+      top:36em;
+      color: rgb(107, 78, 34);
+      white-space: nowrap;
+      padding-bottom: 20px;
+      
+  }
 }
 
 
