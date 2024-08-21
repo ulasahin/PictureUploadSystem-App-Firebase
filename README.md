@@ -1,27 +1,15 @@
-# PictureUploadSystemApp
+# PictureUploadWebService-Firebase
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+  This project allows the user to store a photo or video to Google Cloud's Firebase Storage service. Every user who enters the site stores their files in a public folder.
 
-## Development server
+  The concept of the site is designed for weddings and is suitable for mobile devices. That's why its design was made accordingly. (The site has no restrictions on uploading photos or videos as file types; any type of file can be uploaded.)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technologies Used
+- Angular, Node.js, Javascript, Typescript, HTML, CSS, Media Queries(For mobile device compatibility.), Google Cloud Firebase Storage.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**A version of this site was developed using Java Spring Boot, without using Firebase. ([see](https://github.com/ulasahin/PictureUploadWebSite))**
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
