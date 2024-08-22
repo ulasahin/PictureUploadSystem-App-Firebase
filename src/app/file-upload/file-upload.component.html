@@ -1,15 +1,13 @@
+
+<div *ngIf="showProgressBar">
+  <div class="progress-bar">
+    <div class="progress" [style.width.%]="totalUploadProgress"></div>
+  </div>
+</div>
+
+
 <div>
   <input aria-labelledby="fileUpload" class="custom-choice-file" type="file" (change)="onFileSelected($event)" multiple>
   <button class="custom-button" [disabled]="isUploading"  (click)="onUpload()">Yükle</button>
 </div>
   
-<div class="progress-div" *ngFor="let progress of uploadProgress; let i = index">
-  <div *ngIf="selectedFiles[i]">
-    
-    <div class="progress-bar">
-      <div class="progress" [style.width.%]="progress"></div>
-    </div>
-    <p>{{ progress.toFixed(2) }}%</p>
-    
-  </div>
-</div>

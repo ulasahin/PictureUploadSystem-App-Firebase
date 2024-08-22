@@ -76,6 +76,8 @@
       border-radius: 4px;
       margin-bottom: 10px;
       height: 20px;
+      position: relative;
+      top: 19em;
     }
     
     .progress {
@@ -86,15 +88,15 @@
     }
     .progress-div{
       position: relative;
-      top: 9em;
+      top: 15em;
     }
     .custom-informative-text{
       position: relative;
       left: 0em;
-      top:36em;
+      top:38em;
       color: rgb(107, 78, 34);
       white-space: nowrap;
-      padding-bottom: 20px;
+      padding-bottom: 2em;
       
   }
 }

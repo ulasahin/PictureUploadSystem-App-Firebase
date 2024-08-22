@@ -9,47 +9,44 @@ import { finalize } from 'rxjs/operators';
 })
 export class FileUploadComponent {
   selectedFiles: File[] = [];
-  uploadProgress: number[] = [];
-  downloadURLs: string[] = [];
+  totalUploadProgress: number = 0;
   isUploading: boolean = false;
+  showProgressBar: boolean = false;
 
   constructor(private storage: AngularFireStorage) {}
 
   onFileSelected(event: any) {
     this.selectedFiles = Array.from(event.target.files);
-    this.uploadProgress = new Array(this.selectedFiles.length).fill(0); // Yükleme ilerlemesini sıfırlayın
+    this.showProgressBar = this.selectedFiles.length > 0;
+    this.totalUploadProgress = 0; 
   }
 
   onUpload() {
     if (this.selectedFiles.length > 0) {
       this.isUploading = true;
-      let uploadedFilesCount = 0;
+      let totalFiles = this.selectedFiles.length;
+      let uploadedFiles = 0;
 
-      this.selectedFiles.forEach((file, index) => {
+      this.selectedFiles.forEach(file => {
         const filePath = `uploads/${Date.now()}_${file.name}`;
         const fileRef = this.storage.ref(filePath);
         const task = this.storage.upload(filePath, file);
 
-        // Yükleme yüzdesini takip et
         task.percentageChanges().subscribe(progress => {
-          this.uploadProgress[index] = progress || 0;
-          console.log(`File ${file.name} is ${this.uploadProgress[index]}% uploaded.`);
+          if (progress) {
+            this.totalUploadProgress = ((uploadedFiles * 100) + progress) / totalFiles;
+          }
         });
 
         task.snapshotChanges().pipe(
           finalize(() => {
-            fileRef.getDownloadURL().subscribe(url => {
-              this.downloadURLs[index] = url;
-              console.log('File available at', url);
-              uploadedFilesCount++;
-
-              // Tüm dosyalar yüklendiğinde
-              if (uploadedFilesCount === this.selectedFiles.length) {
-                this.isUploading = false;
-                alert("Yükleme Başarılı. ♥ Teşekkür Ederiz ♥");
-                window.location.reload();
-              }
-            });
+            uploadedFiles++;
+            if (uploadedFiles === totalFiles) {
+              this.isUploading = false;
+              this.showProgressBar = false; 
+              alert("Yükleme Başarılı. ♥ Teşekkür Ederiz ♥");
+              window.location.reload();
+            }
           })
         ).subscribe();
       });

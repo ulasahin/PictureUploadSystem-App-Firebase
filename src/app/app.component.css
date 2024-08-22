@@ -41,6 +41,9 @@
         width: 25em;
         height: 25em;
     }
+    .div-container{
+        display: flex;
+    }
     .custom-pic-couple{
         position: relative;
         left: -17em;
@@ -55,10 +58,10 @@
     .custom-informative-text{
         position: relative;
         left: 0em;
-        top:36em;
+        top: 40em;
         color: rgb(107, 78, 34);
         white-space: nowrap;
-        padding-bottom: 20px;
+        padding-bottom: 2em;
         
     }
 }
