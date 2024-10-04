@@ -17,8 +17,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase), // Firebase'i burada başlatıyoruz
-    AngularFireStorageModule // Firebase Storage modülünü burada ekliyoruz
+    AngularFireModule.initializeApp(environment.firebase), 
+    AngularFireStorageModule 
   ],
   providers: [
     provideHttpClient(withFetch())
